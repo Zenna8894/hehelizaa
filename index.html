@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Haliza ❤️ - Kyuzaa</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            padding: 20px;
+            background-image: radial-gradient(#ffc0cb 2px, transparent 2px);
+            background-size: 20px 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            position: relative;
+            border: 3px solid #ff69b4;
+        }
+        
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #ffb6c1;
+        }
+        
+        p {
+            color: #e91e63;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .hearts {
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+            margin: 20px 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-yes {
+            background-color: #ff69b4;
+            color: white;
+            box-shadow: 0 5px 0 #c2185b;
+        }
+        
+        .btn-yes:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+        
+        .btn-no {
+            background-color: #e0e0e0;
+            color: #9e9e9e;
+            box-shadow: 0 5px 0 #bdbdbd;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .message {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border-radius: 10px;
+            border: 2px dashed #ff69b4;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .cat {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #ff69b4;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Haliza, Aku Mau Ngomong Sesuatu...</h1>
+        
+        <div class="hearts">❤️ ❤️ ❤️</div>
+        
+        <p>
+            Hai Haliza, dari Kyuzaa...<br>
+            Aku udah lama pengen bilang kalau aku suka sama kamu.<br>
+            Kamu mau nggak jadi pacar aku?
+        </p>
+        
+        <div class="cat">(=^･ω･^=)</div>
+        
+        <div class="btn-container">
+            <button class="btn btn-yes" id="btnYes">MAU DONG! ❤️</button>
+            <button class="btn btn-no" id="btnNo">NGGAK MAU</button>
+        </div>
+        
+        <div id="successMessage" class="message hidden">
+            <h2>YAY! ❤️</h2>
+            <p>Aku seneng banget Haliza mau jadi pacar aku!<br>
+            Aku janji bakal bikin kamu bahagia selalu!</p>
+            <div class="cat">(=＾ω＾=)</div>
+        </div>
+        
+        <div class="footer">
+            Dibuat dengan ❤️ oleh Kyuzaa untuk Haliza tercinta
+        </div>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnYes = document.getElementById('btnYes');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Tombol No akan lari ketika dihover
+        btnNo.addEventListener('mouseover', function() {
+            // Posisi random di dalam container
+            const containerWidth = document.querySelector('.container').offsetWidth;
+            const containerHeight = document.querySelector('.container').offsetHeight;
+            
+            const randomX = Math.floor(Math.random() * (containerWidth - 100));
+            const randomY = Math.floor(Math.random() * (containerHeight - 50));
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+            btnNo.style.transition = 'all 0.3s';
+        });
+        
+        // Tombol No tidak bisa diklik
+        btnNo.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Wkwkwk gabisa dipencet! Coba yang bener dong~');
+        });
+        
+        // Ketika tombol Yes diklik
+        btnYes.addEventListener('click', function() {
+            // Sembunyikan tombol
+            btnYes.classList.add('hidden');
+            btnNo.classList.add('hidden');
+            
+            // Tampilkan pesan sukses
+            successMessage.classList.remove('hidden');
+            
+            // Animasi confetti
+            createConfetti();
+        });
+        
+        // Fungsi confetti
+        function createConfetti() {
+            const container = document.querySelector('.container');
+            const colors = ['#ff69b4', '#ff1493', '#ffb6c1', '#ff85a2', '#ff5c8a'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.opacity = '0.8';
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                
+                container.appendChild(confetti);
+                
+                // Animasi jatuh
+                const animation = confetti.animate([
+                    { top: '-10px', opacity: 1 },
+                    { top: '100%', opacity: 0 }
+                ], {
+                    duration: 2000 + Math.random() * 3000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+    </script>
+</body>
+</html>
